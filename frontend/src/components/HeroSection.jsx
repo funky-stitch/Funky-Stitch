@@ -9,9 +9,9 @@ const HeroSection = () => {
 
   const slides = [
     {
-      title: 'Summer Collection 2023',
+      title: 'Summer Collection 2025',
       subtitle: 'Discover our new arrivals',
-      description: 'Up to 50% off on selected items',
+      description: 'Up to  10% off on selected items',
       buttonText: 'Shop Now',
         background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${hero1})`,
 

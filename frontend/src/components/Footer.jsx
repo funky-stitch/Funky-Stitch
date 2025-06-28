@@ -23,10 +23,10 @@ const Footer = () => {
               products with exceptional service.
             </p>
             <div className='social-icons mt-4'>
-              <a href='#' className='text-white me-3'>
+              <a href='#' target='_blank' className='text-white me-3'>
                 <FaFacebook size={20} />
               </a>
-              <a href='#' className='text-white me-3'>
+              <a href='https://x.com/home' target='_blank' className='text-white me-3'>
                 <FaTwitter size={20} />
               </a>
               <a href='https://www.instagram.com/funkystitch.in/' target='_blank' className='text-white me-3'>
@@ -137,16 +137,12 @@ const Footer = () => {
             <h6 className='text-uppercase fw-bold mb-4'>Contact Us</h6>
             <ul className='list-unstyled'>
               <li className='mb-3 d-flex align-items-center'>
-                <MdLocationOn className='me-3 text-primary' />
-                123 Business Ave, Suite 456, San Francisco, CA 94107
-              </li>
-              <li className='mb-3 d-flex align-items-center'>
                 <MdEmail className='me-3 text-primary' />
-                info@shopname.com
+                funkystitch.outfit@gmail.com
               </li>
               <li className='mb-3 d-flex align-items-center'>
                 <MdPhone className='me-3 text-primary' />
-                +1 (555) 123-4567
+                +91 93365 45458
               </li>
             </ul>
 
