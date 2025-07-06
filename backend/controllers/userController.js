@@ -1,27 +1,32 @@
 import asyncHandler from '../middleware/asyncHandler.js';
-import generateToken from '../utils/generateToken.js';
+// import generateToken from '../utils/generateToken.js';
 import User from '../models/userModel.js';
 import TempUser from '../models/tempUserModel.js';
 import sendOTPEmail from '../utils/email.js';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
+import jwt from 'jsonwebtoken';
 
-// @desc    Auth user & get token
-// @route   POST /api/users/auth
-// @access  Public
+const generateToken = (userId) => {
+  return jwt.sign({ userId }, process.env.JWT_SECRET, {
+    expiresIn: '30d',
+  });
+};
+
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
-    generateToken(res, user._id);
+    const token = generateToken(user._id);
 
     res.json({
       _id: user._id,
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      token,
     });
   } else {
     res.status(401);
@@ -191,9 +196,6 @@ const forgotPassword = asyncHandler(async (req, res) => {
     // Create reset URL (use your frontend URL)
     const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
 
-    console.log('Reset URL: ', resetUrl);
-    console.log('Email: ', process.env.EMAIL_USER);
-    console.log('Pass : ', process.env.EMAIL_PASS);
     // Configure email transporter
     const transporter = nodemailer.createTransport({
       service: 'gmail',
